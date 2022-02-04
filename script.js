@@ -23,7 +23,48 @@
 
 'use strict';
 
-const numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '')
+let numberOfFilms;
+
+function start() {
+    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    while(numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+            numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+    }
+
+}
+
+function rememberMyFilms() {
+   for (let i = 0; i < 2; i++) {
+    const a = prompt('Один из последних просмотренных фильмов?', ''),
+    b = prompt('На сколько оцените его?', '');
+if (a != null && b!= '' && b!=null && b!='' & a.length <50) {
+    personalMovieDB[a] = b;
+} else i--; 
+   }
+}
+
+function detectPersonalLevel() {
+    if (personalMovieDB.count < 10 ) {
+    console.log('Просмотрено мало фильмов') 
+} else if (personalMovieDB.count < 30) {
+    console.log('Вы классический зритель')
+} else if (personalMovieDB.count > 50) {
+    console.log('Вы киноман')
+} else console.log('Произошла ошибка');
+}
+
+function showMyDB (hidden) {
+    if (!hidden) {
+        console.log(personalMovieDB);
+    }
+}
+
+function writeYourGenren() {
+    for(let i = 0; i <= 2; i++) {
+        personalMovieDB.genres[i] = prompt(`Ваш любимій жанр под номером ${i+1}`)
+    }
+}
 
 const personalMovieDB = {
     count: numberOfFilms, 
@@ -33,47 +74,10 @@ const personalMovieDB = {
     privat: false
 };
 
+55
 
-
-
-
-
-for (let i = 0; i < 2; i++) {
-    const a = prompt('Один из последних просмотренных фильмов?', ''),
-    b = prompt('На сколько оцените его?', '');
-if (a != null && b!= '' && b!=null && b!='' & a.length <50) {
-    personalMovieDB[a] = b;
-} else i--;
-
-    
-}
-
-if (personalMovieDB.count < 10 ) {
-    console.log('Просмотрено мало фильмов') 
-} else if (personalMovieDB.count < 30) {
-    console.log('Вы классический зритель')
-} else if (personalMovieDB.count > 50) {
-    console.log('Вы киноман')
-} else console.log('Произошла ошибка')
-
-console.log(personalMovieDB)
-
-
-function showFirstMessage (text) {
-    console.log(text);
-    let num = 20;
-}
-
-showFirstMessage('Hello world!');
-
-function calc(a, b) {
-    return a+b;
-}
-
-console.log(calc(4, 3));
-
-let logger = function() {
-    console.log('Hello')
-};
-
-logger();
+start();
+rememberMyFilms();
+detectPersonalLevel();
+showMyDB(personalMovieDB.privat);
+writeYourGenren();
