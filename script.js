@@ -33,6 +33,7 @@ function rememberMyFilms() {
 if (a != null && b!= '' && b!=null && b!='' & a.length <50) {
     personalMovieDB[a] = b;
 } else i--; 
+console.log(i);
    }
 }
 
